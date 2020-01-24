@@ -1,0 +1,25 @@
+{
+  "name": "flashpointcms/fuel",
+  "description": "The fuel to ignite Flashpoint",
+  "type": "library",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "CrushedLive",
+      "email": "jordan@bugbird.co"
+    }
+  ],
+  "autoload-dev": {
+    "psr-4": {
+      "Flashpoint\\Fuel\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.2",
+    "ext-json": "*",
+    "illuminate/support": "^6.0",
+    "illuminate/database": "^6.0",
+    "jenssegers/mongodb": "^3.6",
+    "spatie/enum": "^2.3"
+  }
+}
