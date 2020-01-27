@@ -9,7 +9,7 @@
       "email": "jordan@bugbird.co"
     }
   ],
-  "autoload-dev": {
+  "autoload": {
     "psr-4": {
       "Flashpoint\\Fuel\\": "src/"
     }
