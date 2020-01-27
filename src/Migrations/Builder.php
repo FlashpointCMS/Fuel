@@ -25,4 +25,16 @@ class Builder extends BuilderBase
             $callback($schema);
         }, $options);
     }
+
+    /**
+     * Binds to parent create methods, thus removing our additional stuff
+     *
+     * @param $collection
+     * @param Closure|null $callback
+     * @param array $options
+     */
+    public function baseCreate($collection, Closure $callback = null, array $options = [])
+    {
+        parent::create($collection, $callback, $options);
+    }
 }
