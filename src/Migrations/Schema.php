@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Schema as SchemaBase;
  * @package Flashpoint\Fuel\Migrations
  *
  * @method static Builder create(string $table, \Closure $callback = null, array $options = [])
+ * @method static Builder baseCreate(string $table, \Closure $callback = null, array $options = [])
  * @method bool Builder hasCollection(string $collection)
  */
 class Schema extends SchemaBase
