@@ -14,4 +14,13 @@ use Illuminate\Support\Facades\Schema as SchemaBase;
  */
 class Schema extends SchemaBase
 {
+    /**
+     * Overwrite the accessor to provide the flashpoint connection instead.
+     *
+     * @return \Illuminate\Database\Schema\Builder
+     */
+    protected static function getFacadeAccessor()
+    {
+        return static::connection('flashpoint');
+    }
 }
