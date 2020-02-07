@@ -2,21 +2,22 @@
 
 namespace Flashpoint\Fuel\Entities\Definitions;
 
+use Flashpoint\Fuel\Definition;
 use Flashpoint\Fuel\Entities\Definitions\Input\Input;
 use Flashpoint\Fuel\Entities\Enums\FieldVisibility;
 
 class Field extends Definition
 {
     /** @var Input */
-    private $input;
+    protected $input;
     /** @var string */
-    private $name;
+    protected $name;
     /** @var string */
-    private $label;
+    protected $label;
     /** @var FieldVisibility */
-    private $visibility;
+    protected $visibility;
     /** @var mixed */
-    private $value;
+    protected $value;
 
     public function named(string $name)
     {
@@ -35,14 +36,15 @@ class Field extends Definition
      */
     public function withInput(string $input, callable $typeBuilder = null)
     {
-        return $this->setDefinition(
-            'input',
-            Input::class,
-            empty($typeBuilder) ? new $input : $typeBuilder(new $input)
-        );
+        $entry = new $input;
+        if (!empty($typeBuilder)) {
+            $typeBuilder($entry);
+        }
+
+        return $this->setDefinition('input', Input::class, $entry);
     }
 
-    public function containing(string $value)
+    public function containing($value)
     {
         return $this->setAttribute('value', $value);
     }

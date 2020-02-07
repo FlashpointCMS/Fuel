@@ -2,9 +2,11 @@
 
 namespace Flashpoint\Fuel\Entities\Definitions;
 
+use Flashpoint\Fuel\Definition;
+
 class Collection extends Definition
 {
-    private $fields = [];
+    protected $fields = [];
 
     public function includeField(callable $fieldBuilder)
     {

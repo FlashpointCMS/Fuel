@@ -20,7 +20,6 @@ class Builder extends BuilderBase
     public function create($collection, Closure $callback = null, array $options = [])
     {
         parent::create($collection, function(Blueprint $schema) use ($callback) {
-            $schema->index('_previous_id');
             $schema->index('_entry_id');
             $callback($schema);
         }, $options);

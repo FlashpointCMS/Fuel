@@ -2,6 +2,7 @@
 
 namespace Flashpoint\Fuel\Entities\Definitions;
 
+use Flashpoint\Fuel\Definition;
 use Flashpoint\Fuel\Entities\Enums\EntityType;
 use Flashpoint\Fuel\Models\Model;
 use Flashpoint\Fuel\State;
@@ -18,7 +19,7 @@ abstract class Entity extends Definition
 {
     // Definition
 
-    private $sections = [];
+    protected $sections = [];
 
     /**
      * @return EntityType
@@ -33,12 +34,12 @@ abstract class Entity extends Definition
     public function withCollection(callable $storeBuilder)
     {
 
-        return $this->setDefinition('collection', Collection::class, $storeBuilder(new Collection));
+        return $this->setDefinition('collection', Collection::class, $storeBuilder);
     }
 
     public function includeSection(callable $editorBuilder)
     {
-        return $this->addDefinition('sections', Section::class, $editorBuilder(new Section));
+        return $this->addDefinition('sections', Section::class, $editorBuilder);
     }
 
     // Query
@@ -57,6 +58,7 @@ abstract class Entity extends Definition
     // Functional
 
     protected $store;
+    /** @var State */
     protected $state;
 
     public function __construct(Model $store, State $state)
@@ -82,10 +84,8 @@ abstract class Entity extends Definition
 
         foreach ($sectionBuilders as $sectionBuilder) {
             $this->includeSection(function (Section $section) use ($sectionBuilder) {
-                /** @var Section $section */
-                $section = $this->{$sectionBuilder}($section);
+                $this->{$sectionBuilder}($section);
                 $section->named(Str::snake(Str::replaceFirst('section', '', $sectionBuilder)));
-                return $section;
             });
         }
     }

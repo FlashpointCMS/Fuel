@@ -2,7 +2,7 @@
 
 namespace Flashpoint\Fuel\Entities\Definitions\Input;
 
-use Flashpoint\Fuel\Entities\Definitions\Definition;
+use Flashpoint\Fuel\Definition;
 
 abstract class Input extends Definition
 {

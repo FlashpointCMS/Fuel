@@ -2,10 +2,12 @@
 
 namespace Flashpoint\Fuel\Entities\Definitions;
 
+use Flashpoint\Fuel\Definition;
+
 class Section extends Definition
 {
-    private $name;
-    private $fields = [];
+    protected $name;
+    protected $fields = [];
 
     public function includeField(callable $fieldBuilder)
     {
