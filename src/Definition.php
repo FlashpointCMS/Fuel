@@ -4,7 +4,7 @@ namespace Flashpoint\Fuel;
 
 use Illuminate\Support\Arr;
 
-abstract class Definition implements \ArrayAccess
+abstract class Definition implements \ArrayAccess, \JsonSerializable
 {
     protected function addDefinition($key, $type, $builder)
     {
@@ -58,10 +58,6 @@ abstract class Definition implements \ArrayAccess
 
     protected function setAttribute($key, $entry)
     {
-        if (!is_null($this->$key)) {
-            $class = static::class;
-            throw new \RuntimeException("Item was overwritten when setting {$class}->{$key}");
-        }
         $this->$key = $entry;
         return $this;
     }

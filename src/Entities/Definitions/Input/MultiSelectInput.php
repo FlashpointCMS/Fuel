@@ -2,10 +2,10 @@
 
 namespace Flashpoint\Fuel\Entities\Definitions\Input;
 
-class TextInput extends Input
+class MultiSelectInput extends SelectInput
 {
     public function type()
     {
-        return 'text';
+        return 'multi_select';
     }
 }

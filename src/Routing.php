@@ -16,6 +16,7 @@ class Routing extends Definition
     /** @var string */
     protected $name;
 
+
     public function withEntity(string $entity)
     {
         return $this->setDefinition('entity', Entity::class, $entity);
@@ -62,7 +63,26 @@ class Routing extends Definition
         return $this->name;
     }
 
-    public function observers() {
+    public function observers()
+    {
         return $this->observers;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'name' => $this->name(),
+            'title' => $this->entity()::title(),
+            'description' => $this->entity()::description(),
+            'plural' => $this->entity()::plural(),
+            'type' => $this->entity()::type()
+        ];
     }
 }

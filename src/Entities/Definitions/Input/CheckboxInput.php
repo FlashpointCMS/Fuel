@@ -2,13 +2,13 @@
 
 namespace Flashpoint\Fuel\Entities\Definitions\Input;
 
-class SelectInput extends Input
+class CheckboxInput extends Input
 {
-    protected $options;
+    protected $text;
 
-    public function options(array $options)
+    public function containing(string $text)
     {
-        return $this->setAttribute('options', $options);
+        return $this->setAttribute('text', $text);
     }
 
     /**
@@ -20,11 +20,11 @@ class SelectInput extends Input
      */
     public function jsonSerialize()
     {
-        return parent::jsonSerialize() + ['options' => $this->options];
+        return parent::jsonSerialize() + ['text' => $this->text];
     }
 
     public function type()
     {
-        return 'select';
+        return 'checkbox';
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Flashpoint\Fuel\Entities\Definitions\Input;
 
-class TextInput extends Input
+class RichTextInput extends Input
 {
     public function type()
     {
-        return 'text';
+        return 'rich_text';
     }
 }

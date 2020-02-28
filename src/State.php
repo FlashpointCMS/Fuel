@@ -25,17 +25,25 @@ class State
 
     public function put($name, $value)
     {
-        return Arr::set($this->attributes, $name, $value);
+        Arr::set($this->attributes, $name, $value);
     }
 
-    public function set($state)
+    public function del($name)
     {
-        $this->attributes = array_merge_recursive($this->attributes, $state);
-        return $this;
+        unset($this->attributes[$name]);
+    }
+
+    public function update($state)
+    {
+        $this->attributes = array_merge_recursive($this->attributes, $state instanceof State ? $state->all() : $state);
     }
 
     public function all()
     {
         return $this->attributes;
+    }
+
+    public function set($state) {
+        $this->attributes = $state instanceof State ? $state->all() : $state;
     }
 }

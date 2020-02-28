@@ -3,15 +3,22 @@
 namespace Flashpoint\Fuel\Entities\Helpers;
 
 use Flashpoint\Fuel\Entities\Definitions\Entity;
-use Flashpoint\Fuel\Entities\Enums\EntityType;
 
 class PluralEntity extends Entity
 {
     /**
-     * @return EntityType
+     * @return bool
+     */
+    public static function plural()
+    {
+        return true;
+    }
+
+    /**
+     * @return string
      */
     public static function type()
     {
-        return EntityType::plural();
+        return 'collection';
     }
 }

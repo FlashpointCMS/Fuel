@@ -4,7 +4,6 @@ namespace Flashpoint\Fuel\Entities\Definitions;
 
 use Flashpoint\Fuel\Definition;
 use Flashpoint\Fuel\Entities\Definitions\Input\Input;
-use Flashpoint\Fuel\Entities\Enums\FieldVisibility;
 
 class Field extends Definition
 {
@@ -14,8 +13,8 @@ class Field extends Definition
     protected $name;
     /** @var string */
     protected $label;
-    /** @var FieldVisibility */
-    protected $visibility;
+    /** @var bool */
+    protected $visible;
     /** @var mixed */
     protected $value;
 
@@ -49,20 +48,48 @@ class Field extends Definition
         return $this->setAttribute('value', $value);
     }
 
-    public function displayed(FieldVisibility $visibility)
+    public function visibility(bool $visible)
     {
-        return $this->setAttribute('visibility', $visibility);
+        return $this->setAttribute('visible', $visible);
     }
 
     // Helpers
 
     public function hidden()
     {
-        return $this->displayed(FieldVisibility::invisible());
+        return $this->visibility(false);
     }
 
     public function shown()
     {
-        return $this->displayed(FieldVisibility::visible());
+        return $this->visibility(true);
+    }
+
+    public function name()
+    {
+        return $this->name;
+    }
+
+    public function value()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'input' => $this->input,
+            'name' => $this->name,
+            'label' => $this->label,
+            'visible' => $this->visible ?? true,
+            'value' => $this->value
+        ];
     }
 }

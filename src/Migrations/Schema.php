@@ -21,6 +21,6 @@ class Schema extends SchemaBase
      */
     protected static function getFacadeAccessor()
     {
-        return static::connection('flashpoint');
+        return static::connection('flashpoint_data');
     }
 }

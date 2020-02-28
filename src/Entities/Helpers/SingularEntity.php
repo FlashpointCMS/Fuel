@@ -3,15 +3,22 @@
 namespace Flashpoint\Fuel\Entities\Helpers;
 
 use Flashpoint\Fuel\Entities\Definitions\Entity;
-use Flashpoint\Fuel\Entities\Enums\EntityType;
 
 class SingularEntity extends Entity
 {
     /**
-     * @return EntityType
+     * @return bool
+     */
+    public static function plural()
+    {
+        return false;
+    }
+
+    /**
+     * @return string
      */
     public static function type()
     {
-        return EntityType::singular();
+        return 'entity';
     }
 }
